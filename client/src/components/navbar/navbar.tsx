@@ -10,9 +10,9 @@ import { authClient } from "@/lib/auth-client"
 function NavbarLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex h-16 w-full items-center justify-center border-b">
-      <nav className="mx-auto flex w-full max-w-5xl items-center justify-between px-4">
-        <Link to={ROUTES.HOME} className="font-bold">
-          Home
+      <nav className="mx-auto flex w-full items-center justify-between px-4">
+        <Link to={ROUTES.HOME} className="text-xl font-bold">
+          Careerly
         </Link>
         <div className="flex items-center gap-2">
           <ModeToggle />

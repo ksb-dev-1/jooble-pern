@@ -1,4 +1,5 @@
 import { toNodeHandler } from "better-auth/node";
+import cors from "cors";
 import dotenv from "dotenv";
 import express, { type Request, type Response } from "express";
 
@@ -7,7 +8,16 @@ import { auth } from "./lib/auth.js";
 dotenv.config();
 
 const app = express();
-const PORT = Number(process.env.PORT) || 3000;
+
+// CORS configuration - CRITICAL for OAuth
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL,
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization", "Cookie"],
+  }),
+);
 
 // Better Auth handler - MUST be before other routes
 app.all("/api/auth/*splat", toNodeHandler(auth));
@@ -23,6 +33,8 @@ app.get("/", (req: Request, res: Response) => {
     timestamp: new Date().toISOString(),
   });
 });
+
+const PORT = Number(process.env.PORT) || 3000;
 
 // Start the server
 app.listen(PORT, () => {
