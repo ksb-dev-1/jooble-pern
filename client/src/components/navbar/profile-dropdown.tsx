@@ -1,7 +1,7 @@
 import { useState } from "react"
 
 import { LogOut, User } from "lucide-react"
-import { useNavigate } from "react-router"
+// import { useNavigate } from "react-router"
 import { toast } from "sonner"
 
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
@@ -13,7 +13,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { ROUTES } from "@/constants/routes"
+// import { ROUTES } from "@/constants/routes"
 import { authClient } from "@/lib/auth-client"
 
 interface ProfileDropdownProps {
@@ -25,7 +25,7 @@ const AVATAR_SIZE = 36
 export default function ProfileDropdownMenu({ image }: ProfileDropdownProps) {
   const [open, setOpen] = useState<boolean>(false)
   const [isSigningOut, setIsSigningOut] = useState(false)
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
 
   const handleSignOut = async () => {
     setOpen(false)
@@ -35,7 +35,7 @@ export default function ProfileDropdownMenu({ image }: ProfileDropdownProps) {
       await authClient.signOut({
         fetchOptions: {
           onSuccess: () => {
-            navigate(ROUTES.SIGN_IN)
+            // navigate(ROUTES.SIGN_IN)
             toast.success("Signed out successfully")
           },
           onError: (error) => {

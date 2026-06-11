@@ -11,10 +11,10 @@ export default function ProtectedRoute({
 }) {
   const { data: session, isPending } = authClient.useSession()
 
-  if (isPending) {
+  if (isPending && session === undefined) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center">
-        <Loader2Icon size={32} className="animate-spin" />
+      <div className="min-h-screen flex items-center justify-center">
+        <Loader2Icon className="animate-spin" />
       </div>
     )
   }
@@ -27,5 +27,5 @@ export default function ProtectedRoute({
     return <Navigate to={ROUTES.VERIFY_EMAIL} replace />
   }
 
-  return children
+  return <>{children}</>
 }

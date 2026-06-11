@@ -193,7 +193,7 @@ export default function SignIn() {
             >
               <FcGoogle /> Google{" "}
               {loadingProvider === "google" && (
-                <LoaderCircle size={16} color="animate-spin" />
+                <LoaderCircle size={16} className="animate-spin" />
               )}
             </Button>
 
